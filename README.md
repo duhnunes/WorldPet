@@ -32,7 +32,8 @@ O objetivo do desafio é construir uma página para os clientes agendarem um hor
 - [x] Initial Release
 - [x] Webpack instaled
 - [x] Json-Server
-- [ ] HTML / CSS
+- [x] HTML / CSS
+- [ ] Modal
 - [ ] A técnologia de <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting/Using_CSS_nesting" target="_blank" rel="noopener noreferrer" alt="Link para a documentação sobre CSS Nesting">CSS Nesting</a> está presente nesse projeto.
 - [ ] Mobile até 390px
 
@@ -43,9 +44,11 @@ O objetivo do desafio é construir uma página para os clientes agendarem um hor
   - Using GIT: `git clone https://github.com/duhnunes/ListaDeCompras.git`
 - Open in VSCode:
   - Type `code ListaDeCompras`
-  - or Go to folder `cd ListaDeCompras` and type `code .`
+    - or Go to folder `cd ListaDeCompras` and type `code .`
+  - Start Json-Server in Terminal with `pnpm run server`
+  - Open other Terminal and Start Application with `pnpm run dev`
 - Open in Browser:
-  - Double Click `index.html` file
+  - Enter in `http://localhost:3000`
 
 ## 📺 Demonstration
 
