@@ -1,15 +1,3 @@
 input {
   all: unset;
 }
-input[type="date"] {
-  appearance: textfield;
-  -moz-appearance: textfield;
-  width: 100px;
-
-  &::-webkit-calendar-picker-indicator {
-    display: none;
-  }
-  &::-moz-calendar-picker-indicator {
-    display: none;
-  }
-}
