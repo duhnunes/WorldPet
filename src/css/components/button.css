@@ -28,7 +28,7 @@ button[data-variant="primary"] {
   }
 }
 
-button[data-variant="ghost"] {
+button[data-variant="link"] {
   font: var(--p-sm);
   color: var(--content-tertiary);
 
