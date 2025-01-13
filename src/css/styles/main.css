@@ -1,0 +1,112 @@
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  width: 54.375rem;
+  margin-inline: auto;
+  padding-bottom: 5rem;
+
+  & header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+}
+
+.hero {
+  & h1 {
+    font: var(--title);
+  }
+
+  & p {
+    font: var(--p-md);
+    color: var(--content-secondary);
+  }
+}
+
+.select-date {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  padding: 0.75rem;
+
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.period-box {
+  background-color: var(--bg-tertiary);
+  border-radius: 10px;
+
+  & header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid var(--border-divisor);
+
+    & section {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+
+      font: var(--label-lg);
+    }
+
+    & span {
+      font: var(--label-lg);
+      color: var(--content-secondary);
+    }
+  }
+
+  & .period {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    padding: 1.25rem;
+  }
+}
+
+.client-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  padding-inline: 0.75rem;
+
+  & .hour {
+    font: var(--label-md);
+  }
+
+  & .client-day,
+  & .type {
+    flex: 1 0 0;
+  }
+
+  & .client-day {
+    font: var(--p-sm);
+    color: var(--content-secondary);
+
+    & .day {
+      font: var(--label-sm);
+      color: var(--content-primary);
+    }
+  }
+
+  & .type {
+    font: var(--p-sm);
+    color: var(--content-secondary);
+  }
+}

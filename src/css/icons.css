@@ -1,0 +1,46 @@
+.logo {
+  display: inline-block;
+  background: url("../../public/assets/logo.svg") no-repeat center/cover;
+
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.calendar {
+  display: inline-block;
+  background: url("../../public/assets/icons/calendar.svg") no-repeat
+    center/cover;
+
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.arrow-down {
+  display: inline-block;
+  background: url("../../public/assets/icons/arrowDown.svg") no-repeat
+    center/cover;
+
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.sun-fog {
+  display: inline-block;
+  background: url("../../public/assets/icons/sunFog.svg") no-repeat center/cover;
+
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.cloud-sun {
+  display: inline-block;
+  background: url("../../public/assets/icons/cloudSun.svg") no-repeat
+    center/cover;
+
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.moon-stars {
+  display: inline-block;
+  background: url("../../public/assets/icons/moonStars.svg") no-repeat
+    center/cover;
+
+  width: 1.25rem;
+  height: 1.25rem;
+}

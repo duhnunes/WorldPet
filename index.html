@@ -2,12 +2,138 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>World Pet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <link rel="icon" href="./src/assets/scissors.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>World Pet</title>
   </head>
   <body>
-    <h1>Hello World!</h1>
+    <nav>
+      <a class="app-name" href="./">
+        <i class="logo"></i>
+        Mundo Pet
+      </a>
+    </nav>
+    <main>
+      <header>
+        <section class="hero">
+          <h1>Sua agenda</h1>
+          <p>
+            Aqui você pode ver todos os clientes e serviços agendados para hoje.
+          </p>
+        </section>
+        <label class="select-date">
+          <i class="calendar"></i>
+          <input type="date" id="date" />
+          <i class="arrow-down calendar-arrow"></i>
+        </label>
+      </header>
+      <section class="container">
+        <!-- MORNING -->
+        <section class="period-box">
+          <header>
+            <section>
+              <i class="sun-fog"></i>
+              Manhã
+            </section>
+            <span>09h-12h</span>
+          </header>
+          <ul class="period">
+            <li class="client-content">
+              <span class="hour">09:00</span>
+              <div class="client-day">
+                <span class="day">Thor</span>
+                <span>/</span>
+                <span class="client">Fernanda Costa</span>
+              </div>
+              <span class="type">Vacinação</span>
+              <button type="button" id="cancel" data-variant="ghost">
+                Remover agendamento
+              </button>
+            </li>
+          </ul>
+        </section>
+        <!-- AFTERNOON -->
+        <section class="period-box">
+          <header>
+            <section>
+              <i class="cloud-sun"></i>
+              Tarde
+            </section>
+            <span>13h-18h</span>
+          </header>
+          <ul class="period">
+            <li class="client-content">
+              <span class="hour">09:00</span>
+              <div class="client-day">
+                <span class="day">Thor</span>
+                <span>/</span>
+                <span class="client">Fernanda Costa</span>
+              </div>
+              <span class="type">Vacinação</span>
+              <button type="button" id="cancel" data-variant="ghost">
+                Remover agendamento
+              </button>
+            </li>
+            <li class="client-content">
+              <span class="hour">09:00</span>
+              <div class="client-day">
+                <span class="day">Thor</span>
+                <span>/</span>
+                <span class="client">Fernanda Costa</span>
+              </div>
+              <span class="type">Vacinação</span>
+              <button type="button" id="cancel" data-variant="ghost">
+                Remover agendamento
+              </button>
+            </li>
+            <li class="client-content">
+              <span class="hour">09:00</span>
+              <div class="client-day">
+                <span class="day">Thor</span>
+                <span>/</span>
+                <span class="client">Fernanda Costa</span>
+              </div>
+              <span class="type">Vacinação</span>
+              <button type="button" id="cancel" data-variant="ghost">
+                Remover agendamento
+              </button>
+            </li>
+          </ul>
+        </section>
+        <!-- NIGHT -->
+        <section class="period-box">
+          <header>
+            <section>
+              <i class="moon-stars"></i>
+              Noite
+            </section>
+            <span>19h-21h</span>
+          </header>
+          <ul class="period">
+            <li class="client-content">
+              <span class="hour">09:00</span>
+              <div class="client-day">
+                <span class="day">Thor</span>
+                <span>/</span>
+                <span class="client">Fernanda Costa</span>
+              </div>
+              <span class="type">Vacinação</span>
+              <button type="button" id="cancel" data-variant="ghost">
+                Remover agendamento
+              </button>
+            </li>
+          </ul>
+        </section>
+      </section>
+    </main>
+    <footer>
+      <button type="button" data-variant="primary">Novo Agendamento</button>
+    </footer>
   </body>
 </html>
