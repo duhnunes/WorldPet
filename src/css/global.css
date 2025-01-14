@@ -51,6 +51,7 @@
 
   background: var(--bg-primary);
   color: var(--content-primary);
+  font-family: var(--inter);
 }
 
 body {
