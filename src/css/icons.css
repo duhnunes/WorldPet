@@ -44,3 +44,38 @@
   width: 1.25rem;
   height: 1.25rem;
 }
+.close {
+  display: inline-block;
+  background: url("../../public/assets/icons/close.svg") no-repeat center/cover;
+
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.user {
+  display: inline-block;
+  background: url("../../public/assets/icons/user.svg") no-repeat center/cover;
+
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.pet-paw {
+  display: inline-block;
+  background: url("../../public/assets/icons/petPaw.svg") no-repeat center/cover;
+
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.phone {
+  display: inline-block;
+  background: url("../../public/assets/icons/phone.svg") no-repeat center/cover;
+
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.clock {
+  display: inline-block;
+  background: url("../../public/assets/icons/clock.svg") no-repeat center/cover;
+
+  width: 1.25rem;
+  height: 1.25rem;
+}
