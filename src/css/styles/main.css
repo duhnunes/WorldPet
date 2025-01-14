@@ -46,13 +46,16 @@ main {
   }
 
   &:focus,
-  &:focus-within,
-  &:active {
+  &:focus-visible,
+  &:focus-within {
     border-color: var(--border-brand);
   }
 
   & #displayDate {
-    text-transform: uppercase;
+    font-family: var(--inter);
+    font-size: 1rem;
+    line-height: 150%;
+    color: var(--content-secondary);
 
     -webkit-user-select: none;
     -moz-user-select: none;

@@ -27,7 +27,7 @@
             Aqui você pode ver todos os clientes e serviços agendados para hoje.
           </p>
         </section>
-        <label class="select-date">
+        <label class="select-date" id="datePicker">
           <i class="calendar"></i>
           <span id="displayDate">dd/mm/yyyy</span>
           <i class="arrow-down calendar-arrow"></i>
@@ -139,7 +139,7 @@
       </button>
     </footer>
 
-    <!-- MODALS -->
+    <!-- MODAL NEW SCHEDULE -->
     <div id="scheduleModal" class="new-schedule">
       <form class="modal-container">
         <header>
@@ -197,6 +197,21 @@
       </form>
     </div>
 
-    <!-- Scripts -->
+    <!-- MODAL DATE-PICKER -->
+    <div id="datePickerModal" class="date-picker">
+      <header>
+        <i class="arrow-down rotate-left"></i>
+        <div>
+          <span class="monthSelected">November</span>
+          <span class="yearSelected">2022</span>
+        </div>
+        <i class="arrow-down rotate-right"></i>
+      </header>
+
+      <section class="date-content">
+        <header id="weeks-container"></header>
+        <article id="days-container"></article>
+      </section>
+    </div>
   </body>
 </html>
