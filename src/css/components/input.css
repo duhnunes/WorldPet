@@ -1,3 +1,35 @@
 input {
   all: unset;
+  cursor: text;
+  flex: 1;
+
+  &::placeholder {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+}
+
+textarea {
+  all: unset;
+  background-color: inherit;
+  resize: none;
+  height: 5.1875rem;
+
+  padding: 0.75rem;
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+
+  color: var(--content-primary);
+
+  cursor: text;
+
+  transition: border-color 0.35s ease;
+
+  &:hover {
+    border-color: var(--border-secondary);
+  }
+  &:focus {
+    border-color: var(--border-brand);
+  }
 }

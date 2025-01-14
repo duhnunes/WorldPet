@@ -134,8 +134,68 @@
       </section>
     </main>
     <footer>
-      <button type="button" data-variant="primary">Novo Agendamento</button>
+      <button type="button" data-variant="primary" id="newSchedule">
+        Novo Agendamento
+      </button>
     </footer>
+
+    <!-- MODALS -->
+    <div id="scheduleModal" class="new-schedule">
+      <form class="modal-container">
+        <header>
+          <i class="close"></i>
+          <h2>Agende um atendimento</h2>
+          <p>Preencha os dados do cliente para realizar o agendamento:</p>
+        </header>
+
+        <section class="modal-content">
+          <label>
+            <span>Nome do tutor</span>
+            <div class="input-box">
+              <i class="user"></i>
+              <input type="text" placeholder="Digite seu nome" />
+            </div>
+          </label>
+          <label>
+            <span>Nome do pet</span>
+            <div class="input-box">
+              <i class="pet-paw"></i>
+              <input type="text" placeholder="Digite o nome do seu pet" />
+            </div>
+          </label>
+          <label>
+            <span>Telefone</span>
+            <div class="input-box">
+              <i class="phone"></i>
+              <input type="text" placeholder="(00) 000-000-000" />
+            </div>
+          </label>
+          <label>
+            <span>Descrição do serviço</span>
+            <textarea placeholder="Banho e tosa"></textarea>
+          </label>
+          <div class="date-hour">
+            <label>
+              <span>Data</span>
+              <div class="input-box">
+                <i class="calendar"></i>
+                <span>dd/mm/yyyy</span>
+                <i class="arrow-down"></i>
+              </div>
+            </label>
+            <label>
+              <span>Hora</span>
+              <div class="input-box">
+                <i class="clock"></i>
+                <span>12:00</span>
+                <i class="arrow-down"></i>
+              </div>
+            </label>
+          </div>
+        </section>
+        <button type="submit" data-variant="primary">Agendar</button>
+      </form>
+    </div>
 
     <!-- Scripts -->
   </body>
