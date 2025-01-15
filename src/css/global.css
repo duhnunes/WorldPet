@@ -52,6 +52,9 @@
   background: var(--bg-primary);
   color: var(--content-primary);
   font-family: var(--inter);
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--bg-brand) var(--bg-tertiary);
 }
 
 body {
