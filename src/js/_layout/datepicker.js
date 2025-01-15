@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 
+// Elementos do DatePicker
 const datePicker = document.getElementById("datePicker");
 const datePickerModal = document.getElementById("datePickerModal");
 const daysContainer = document.getElementById("days-container");
@@ -9,6 +10,13 @@ const daysOfWeek = document.getElementById("weeks-container");
 
 const displayDate = document.getElementById("displayDate");
 displayDate.textContent = dayjs().format("DD/MM/YYYY");
+displayDate.value = dayjs().format("DD/MM/YYYY");
+
+// Elemento do ModalSelectDate
+const selectDateModal = document.getElementById("selectDateModal");
+const dateModal = document.getElementById("dateModal");
+dateModal.textContent = dayjs().format("DD/MM/YYYY");
+dateModal.value = dayjs().format("DD/MM/YYYY");
 
 function generateDays(month, year) {
   // Limpa os dias anteriores e os dias da semana anteriores
@@ -68,15 +76,34 @@ function updateMonthYear(month, year) {
 }
 
 // Posiciona o DatePicker abaixo do label clicado
+function positionDatePicker(label, position = "below") {
+  const rect = label.getBoundingClientRect();
+  const offset = 210;
+  if (position === "above") {
+    datePickerModal.style.top = `${
+      rect.top + window.scrollY - datePickerModal.offsetHeight - offset
+    }px`;
+  } else {
+    datePickerModal.style.top = `${rect.bottom + window.scrollY + 5}px`;
+  }
+  datePickerModal.style.left = `${rect.left + window.scrollX}px`;
+}
+
+const datepickerHeader = document.querySelector(".date-picker header");
 function openDatePicker(event) {
   const label = event.currentTarget;
 
-  // Positional o DatePicker abaixo do label
-  const rect = label.getBoundingClientRect();
-  datePickerModal.style.top = `${rect.bottom + window.scrollY}px`;
-  datePickerModal.style.left = `${rect.left + window.scrollX}px`;
+  // Posiciona o DatePicker acima ou abaixo do elemento clicado
+  if (label.id === "selectDateModal") {
+    positionDatePicker(label, "above");
+    datePickerModal.style.flexDirection = "column-reverse";
+    datepickerHeader.classList.add("above");
+  } else {
+    positionDatePicker(label);
+    datePickerModal.style.flexDirection = "column";
+  }
 
-  datePickerModal.style.display = "block";
+  datePickerModal.style.display = "flex";
 
   // Altera a borda diretamente
   label.style.borderColor = "var(--bg-brand)";
@@ -89,16 +116,19 @@ function openDatePicker(event) {
   generateDays(currentMonth, currentYear);
 }
 
-datePicker.onclick = openDatePicker;
+datePicker.addEventListener("click", openDatePicker);
+selectDateModal.addEventListener("click", openDatePicker);
 
 // Fecha o DatePicker ao clicar fora dele e reseta a borda do label
 window.onclick = function (event) {
   if (
     !event.target.closest(".select-date") &&
-    !event.target.closest(".date-picker")
+    !event.target.closest(".date-picker") &&
+    !event.target.closest("#selectDateModal")
   ) {
     datePickerModal.style.display = "none";
     datePicker.style.borderColor = "";
+    datepickerHeader.classList.remove("above");
   }
 };
 
@@ -107,6 +137,7 @@ function selectDate(day) {
     `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${day}`
   ).format("DD/MM/YYYY");
   displayDate.textContent = selectedDate;
+  dateModal.textContent = selectedDate;
   datePickerModal.style.display = "none";
   datePicker.style.borderColor = "";
 }
