@@ -1,5 +1,4 @@
-.new-schedule {
-  display: none;
+.modal-base {
   position: fixed;
   inset: 0;
 
@@ -19,7 +18,7 @@
   translate: -50% -50%;
 
   width: 29.8125rem;
-  height: 44.75rem;
+  /* height: 44.75rem; */
 
   padding: 2.5rem;
   background-color: var(--bg-tertiary);
