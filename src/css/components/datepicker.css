@@ -10,6 +10,8 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0 0 0 / 0.1);
 
+  z-index: 20;
+
   & > header {
     display: flex;
     align-items: center;
@@ -25,6 +27,15 @@
     & .monthSelected {
       text-transform: capitalize;
     }
+  }
+
+  & header.above {
+    padding-bottom: 0;
+    padding-top: 0.5rem;
+    margin-bottom: 0;
+    margin-top: 0.5rem;
+    border-bottom: none;
+    border-top: 1px solid var(--border-primary);
   }
 }
 
@@ -45,7 +56,7 @@
   & #weeks-container {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    place-items: center;
+    place-items: flex-start;
     gap: 0.25rem;
 
     font: var(--label-sm);
