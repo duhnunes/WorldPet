@@ -14,7 +14,10 @@ closeModalBtn.onclick = function () {
 
 // Fecha o modal ao clicar fora dele
 window.onclick = function (event) {
-  if (event.target === modal) {
+  if (
+    !event.target.closest(".modal-base") &&
+    !event.target.closest("#newSchedule")
+  ) {
     modal.style.display = "none";
   }
 };

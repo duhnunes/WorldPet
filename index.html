@@ -44,8 +44,8 @@
             </section>
             <span>09h-12h</span>
           </header>
-          <ul class="period">
-            <li class="client-content">
+          <ul class="period" id="morning">
+            <!-- <li class="client-content">
               <span class="hour">09:00</span>
               <div class="client-day">
                 <span class="day">Thor</span>
@@ -56,7 +56,7 @@
               <button type="button" id="cancel" data-variant="link">
                 Remover agendamento
               </button>
-            </li>
+            </li> -->
           </ul>
         </section>
         <!-- AFTERNOON -->
@@ -68,8 +68,8 @@
             </section>
             <span>13h-18h</span>
           </header>
-          <ul class="period">
-            <li class="client-content">
+          <ul class="period" id="aternoon">
+            <!-- <li class="client-content">
               <span class="hour">09:00</span>
               <div class="client-day">
                 <span class="day">Thor</span>
@@ -80,31 +80,7 @@
               <button type="button" id="cancel" data-variant="link">
                 Remover agendamento
               </button>
-            </li>
-            <li class="client-content">
-              <span class="hour">09:00</span>
-              <div class="client-day">
-                <span class="day">Thor</span>
-                <span>/</span>
-                <span class="client">Fernanda Costa</span>
-              </div>
-              <span class="type">Vacinação</span>
-              <button type="button" id="cancel" data-variant="link">
-                Remover agendamento
-              </button>
-            </li>
-            <li class="client-content">
-              <span class="hour">09:00</span>
-              <div class="client-day">
-                <span class="day">Thor</span>
-                <span>/</span>
-                <span class="client">Fernanda Costa</span>
-              </div>
-              <span class="type">Vacinação</span>
-              <button type="button" id="cancel" data-variant="link">
-                Remover agendamento
-              </button>
-            </li>
+            </li> -->
           </ul>
         </section>
         <!-- NIGHT -->
@@ -116,8 +92,8 @@
             </section>
             <span>19h-21h</span>
           </header>
-          <ul class="period">
-            <li class="client-content">
+          <ul class="period" id="night">
+            <!-- <li class="client-content">
               <span class="hour">09:00</span>
               <div class="client-day">
                 <span class="day">Thor</span>
@@ -128,7 +104,7 @@
               <button type="button" id="cancel" data-variant="link">
                 Remover agendamento
               </button>
-            </li>
+            </li> -->
           </ul>
         </section>
       </section>
@@ -139,8 +115,11 @@
       </button>
     </footer>
 
-    <!-- MODAL NEW SCHEDULE -->
-    <div id="scheduleModal" class="new-schedule">
+    <!-- PORTAL TO MODAL -->
+    <div id="portal"></div>
+
+    <!-- MODAL NEW SCHEDULE LAYOUT -->
+    <!-- <div class="modal-base" id="scheduleModal">
       <form class="modal-container">
         <header>
           <i class="close"></i>
@@ -177,9 +156,9 @@
           <div class="date-hour">
             <label>
               <span>Data</span>
-              <div class="input-box">
+              <div class="input-box" id="selectDateModal">
                 <i class="calendar"></i>
-                <span>dd/mm/yyyy</span>
+                <span id="dateModal">dd/mm/yyyy</span>
                 <i class="arrow-down"></i>
               </div>
             </label>
@@ -195,10 +174,10 @@
         </section>
         <button type="submit" data-variant="primary">Agendar</button>
       </form>
-    </div>
+    </div> -->
 
-    <!-- MODAL DATE-PICKER -->
-    <div id="datePickerModal" class="date-picker">
+    <!-- MODAL DATE-PICKER LAYOUT -->
+    <!-- <div class="date-picker" id="datePickerModal" style="display: none">
       <header>
         <i class="arrow-down rotate-left"></i>
         <div>
@@ -212,6 +191,17 @@
         <header id="weeks-container"></header>
         <article id="days-container"></article>
       </section>
+    </div> -->
+
+    <!-- MODAL ERROR MESSAGE LAYOUT -->
+    <div class="modal-base" id="errorMsgModal" style="display: none">
+      <div class="modal-container">
+        <header>
+          <i class="close" onclick="closeErrorModal()"></i>
+          <h2>Error</h2>
+          <p>Algo deu errado, tente novamente.</p>
+        </header>
+      </div>
     </div>
   </body>
 </html>
