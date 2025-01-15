@@ -18,4 +18,3 @@ import "./css/styles/footer.css";
 
 // JS
 import "./js/_layout/portal.js";
-import "./js/_layout/datepicker.js";
