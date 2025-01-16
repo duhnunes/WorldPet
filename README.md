@@ -34,7 +34,7 @@ O objetivo do desafio é construir uma página para os clientes agendarem um hor
 - [x] Json-Server
 - [x] HTML / CSS
 - [x] Modal
-- [ ] DatePicker
+- [x] DatePicker
 - [ ] Dynamic Period List
 - [ ] Dropdown
 - [ ] Motion

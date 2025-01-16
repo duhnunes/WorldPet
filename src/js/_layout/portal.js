@@ -2,22 +2,35 @@ import { newScheduleModal } from "./modal/newSchedule";
 import { datePickerModal } from "./modal/datePickerModal";
 import { positionDatePicker } from "./modal/positionDatePicker";
 import { datePicker } from "./datepicker";
+import dayjs from "dayjs";
 
 const portal = document.getElementById("portal");
 
 const newSchedule = document.getElementById("newSchedule");
 const openDatePickerButton = document.getElementById("datePicker");
 
+let selectDateModal;
 let datePickerModalElement;
 let datepickerHeader;
+let lastClickedElement;
 
 newSchedule.addEventListener("click", () => {
   const form = newScheduleModal();
   portal.appendChild(form);
 
-  // Handler para o clique fora do modal
+  selectDateModal = document.getElementById("selectDateModal");
+  const dateModal = document.getElementById("dateModal");
+  if (selectDateModal) {
+    selectDateModal.addEventListener("click", handleDatePickerClick);
+  }
+  dateModal.textContent = dayjs().format("DD/MM/YYYY");
+
   const clickOutsideHandler = (e) => {
-    if (!newSchedule.contains(e.target) && !form.contains(e.target)) {
+    if (
+      !newSchedule.contains(e.target) &&
+      !form.contains(e.target) &&
+      !selectDateModal
+    ) {
       portal.removeChild(form);
       document.removeEventListener("click", clickOutsideHandler);
     }
@@ -26,16 +39,25 @@ newSchedule.addEventListener("click", () => {
   document.addEventListener("click", clickOutsideHandler);
 });
 
-openDatePickerButton.addEventListener("click", (e) => {
+function handleDatePickerClick(e) {
   e.stopPropagation();
 
+  const currentTarget = e.currentTarget;
+
+  if (datePickerModalElement && lastClickedElement === currentTarget) {
+    console.log("Removendo datePickerModal");
+    portal.removeChild(datePickerModalElement);
+    datePickerModalElement = null;
+    lastClickedElement = null;
+    return;
+  }
+
+  lastClickedElement = currentTarget;
+
   if (!datePickerModalElement) {
-    console.log("Criando datePickerModal");
     datePickerModalElement = datePickerModal();
     datepickerHeader = datePickerModalElement.querySelector("header");
     portal.appendChild(datePickerModalElement);
-  } else {
-    datePickerModalElement.style.display = "block";
   }
 
   const clickOutsideHandler = (e) => {
@@ -49,23 +71,39 @@ openDatePickerButton.addEventListener("click", (e) => {
       portal.removeChild(datePickerModalElement);
       datePickerModalElement = null;
       document.removeEventListener("click", clickOutsideHandler);
+      lastClickedElement = null;
     }
   };
 
   document.addEventListener("click", clickOutsideHandler);
 
-  const label = e.currentTarget;
-
-  // Posiciona o DatePicker acima ou abaixo do elemento clicado
-  if (label.id === "selectDateModal") {
-    positionDatePicker(label, datePickerModalElement, "above");
+  if (currentTarget.id === "selectDateModal") {
+    positionDatePicker(currentTarget, datePickerModalElement, "above");
+    datePickerModalElement.style.display = "flex";
     datePickerModalElement.style.flexDirection = "column-reverse";
     datepickerHeader.classList.add("above");
   } else {
-    positionDatePicker(label, datePickerModalElement);
+    positionDatePicker(currentTarget, datePickerModalElement);
+    datePickerModalElement.style.display = "flex";
     datePickerModalElement.style.flexDirection = "column";
   }
 
-  // Inicializa o conteúdo do datePicker
-  datePicker(datePickerModalElement, e);
-});
+  // Passa a função de seleção de data como parâmetro
+  datePicker(datePickerModalElement, (day) => selectDate(day, currentTarget));
+}
+
+function selectDate(day, currentTarget) {
+  const displayDate =
+    currentTarget.id === "selectDateModal"
+      ? document.getElementById("dateModal")
+      : document.getElementById("displayDate");
+
+  const selectedDate = dayjs(
+    `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${day}`
+  ).format("DD/MM/YYYY");
+  if (displayDate) {
+    displayDate.textContent = selectedDate;
+  }
+}
+
+openDatePickerButton.addEventListener("click", handleDatePickerClick);

@@ -1,10 +1,10 @@
 export function positionDatePicker(
-  label,
+  currentTarget,
   datePickerModalElement,
   position = "below"
 ) {
-  const rect = label.getBoundingClientRect();
-  const offset = 210;
+  const rect = currentTarget.getBoundingClientRect();
+  const offset = 140;
   if (position === "above") {
     datePickerModalElement.style.top = `${
       rect.top + window.scrollY - datePickerModalElement.offsetHeight - offset
