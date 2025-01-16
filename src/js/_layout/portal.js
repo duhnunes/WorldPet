@@ -18,6 +18,9 @@ newSchedule.addEventListener("click", () => {
   const form = newScheduleModal();
   portal.appendChild(form);
 
+  const closeButton = form.querySelector(".close");
+
+  // Adiciona o event listener para selectDateModal após o modal ser renderizado
   selectDateModal = document.getElementById("selectDateModal");
   const dateModal = document.getElementById("dateModal");
   if (selectDateModal) {
@@ -25,11 +28,13 @@ newSchedule.addEventListener("click", () => {
   }
   dateModal.textContent = dayjs().format("DD/MM/YYYY");
 
+  // Handler para clique fora do modal
   const clickOutsideHandler = (e) => {
     if (
-      !newSchedule.contains(e.target) &&
-      !form.contains(e.target) &&
-      !selectDateModal
+      (!form.contains(e.target) &&
+        !newSchedule.contains(e.target) &&
+        !selectDateModal) ||
+      e.target === closeButton
     ) {
       portal.removeChild(form);
       document.removeEventListener("click", clickOutsideHandler);
@@ -39,13 +44,13 @@ newSchedule.addEventListener("click", () => {
   document.addEventListener("click", clickOutsideHandler);
 });
 
+// Handler para clique no botão de data
 function handleDatePickerClick(e) {
   e.stopPropagation();
 
   const currentTarget = e.currentTarget;
 
   if (datePickerModalElement && lastClickedElement === currentTarget) {
-    console.log("Removendo datePickerModal");
     portal.removeChild(datePickerModalElement);
     datePickerModalElement = null;
     lastClickedElement = null;
@@ -67,7 +72,6 @@ function handleDatePickerClick(e) {
       datePickerModalElement &&
       !datePickerModalElement.contains(e.target)
     ) {
-      console.log("Removendo datePickerModal");
       portal.removeChild(datePickerModalElement);
       datePickerModalElement = null;
       document.removeEventListener("click", clickOutsideHandler);
@@ -77,6 +81,7 @@ function handleDatePickerClick(e) {
 
   document.addEventListener("click", clickOutsideHandler);
 
+  // Posiciona o datePickerModal
   if (currentTarget.id === "selectDateModal") {
     positionDatePicker(currentTarget, datePickerModalElement, "above");
     datePickerModalElement.style.display = "flex";
@@ -93,11 +98,13 @@ function handleDatePickerClick(e) {
 }
 
 function selectDate(day, currentTarget) {
+  // Seleciona o input de data
   const displayDate =
     currentTarget.id === "selectDateModal"
       ? document.getElementById("dateModal")
       : document.getElementById("displayDate");
 
+  // Formata a data selecionada
   const selectedDate = dayjs(
     `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${day}`
   ).format("DD/MM/YYYY");

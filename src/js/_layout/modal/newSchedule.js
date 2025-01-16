@@ -33,6 +33,7 @@ export function newScheduleModal() {
   iconUser.classList.add("user");
   const inputTutorName = document.createElement("input");
   inputTutorName.type = "text";
+  inputTutorName.id = "clientName";
   inputTutorName.placeholder = "Digite seu nome";
 
   divTutorName.append(iconUser, inputTutorName);
@@ -49,6 +50,7 @@ export function newScheduleModal() {
   iconPet.classList.add("pet-paw");
   const inputPetName = document.createElement("input");
   inputPetName.type = "text";
+  inputPetName.id = "petName";
   inputPetName.placeholder = "Digite o nome do seu pet";
 
   divPetName.append(iconPet, inputPetName);
@@ -65,6 +67,7 @@ export function newScheduleModal() {
   iconPhone.classList.add("phone");
   const inputPhone = document.createElement("input");
   inputPhone.type = "text";
+  inputPhone.id = "phone";
   inputPhone.placeholder = "(00) 000-000-000";
 
   divPhone.append(iconPhone, inputPhone);
@@ -109,6 +112,7 @@ export function newScheduleModal() {
   const iconClock = document.createElement("i");
   iconClock.classList.add("clock");
   const spanHourDecimal = document.createElement("span");
+  spanHourDecimal.id = "hourModal";
   spanHourDecimal.textContent = "12:00";
   const iconArrowDown2 = document.createElement("i");
   iconArrowDown2.classList.add("arrow-down");

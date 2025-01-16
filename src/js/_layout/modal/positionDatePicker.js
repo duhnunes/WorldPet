@@ -4,7 +4,7 @@ export function positionDatePicker(
   position = "below"
 ) {
   const rect = currentTarget.getBoundingClientRect();
-  const offset = 140;
+  const offset = 165;
   if (position === "above") {
     datePickerModalElement.style.top = `${
       rect.top + window.scrollY - datePickerModalElement.offsetHeight - offset
