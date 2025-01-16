@@ -1,8 +1,9 @@
 import { newScheduleModal } from "./modal/newSchedule";
 import { datePickerModal } from "./modal/datePickerModal";
-import { positionDatePicker } from "./modal/positionDatePicker";
+import { positionModal } from "./modal/positionModal";
 import { datePicker } from "./datepicker";
 import dayjs from "dayjs";
+import { dropdown } from "./dropdown";
 
 const portal = document.getElementById("portal");
 
@@ -10,14 +11,15 @@ const newSchedule = document.getElementById("newSchedule");
 const openDatePickerButton = document.getElementById("datePicker");
 
 let selectDateModal;
-let datePickerModalElement;
+let referenceElement;
 let datepickerHeader;
 let lastClickedElement;
 
-newSchedule.addEventListener("click", () => {
+newSchedule.addEventListener("click", (e) => {
   const form = newScheduleModal();
   portal.appendChild(form);
 
+  // Armazena o botão de fechar
   const closeButton = form.querySelector(".close");
 
   // Adiciona o event listener para selectDateModal após o modal ser renderizado
@@ -40,40 +42,54 @@ newSchedule.addEventListener("click", () => {
       document.removeEventListener("click", clickOutsideHandler);
     }
   };
-
   document.addEventListener("click", clickOutsideHandler);
+
+  // Handler para clique no botão de hora
+  const selectHour = document.getElementById("selectHourModal");
+  selectHour.addEventListener("click", handleDropdownClick);
 });
 
 // Handler para clique no botão de data
 function handleDatePickerClick(e) {
   e.stopPropagation();
 
+  // Fecha o dropdown se estiver aberto
+  if (referenceElement && referenceElement.classList.contains("dropdown")) {
+    portal.removeChild(referenceElement);
+    referenceElement = null;
+  }
+
+  // Armazena o elemento clicado
   const currentTarget = e.currentTarget;
 
-  if (datePickerModalElement && lastClickedElement === currentTarget) {
-    portal.removeChild(datePickerModalElement);
-    datePickerModalElement = null;
+  // Fecha o datePickerModal
+  if (referenceElement && lastClickedElement === currentTarget) {
+    portal.removeChild(referenceElement);
+    referenceElement = null;
     lastClickedElement = null;
     return;
   }
 
+  // Armazena o elemento clicado
   lastClickedElement = currentTarget;
 
-  if (!datePickerModalElement) {
-    datePickerModalElement = datePickerModal();
-    datepickerHeader = datePickerModalElement.querySelector("header");
-    portal.appendChild(datePickerModalElement);
+  // Renderiza o datePickerModal
+  if (!referenceElement) {
+    referenceElement = datePickerModal();
+    datepickerHeader = referenceElement.querySelector("header");
+    portal.appendChild(referenceElement);
   }
 
+  // Handler para clique fora do datePickerModal
   const clickOutsideHandler = (e) => {
     if (
       openDatePickerButton &&
       !openDatePickerButton.contains(e.target) &&
-      datePickerModalElement &&
-      !datePickerModalElement.contains(e.target)
+      referenceElement &&
+      !referenceElement.contains(e.target)
     ) {
-      portal.removeChild(datePickerModalElement);
-      datePickerModalElement = null;
+      portal.removeChild(referenceElement);
+      referenceElement = null;
       document.removeEventListener("click", clickOutsideHandler);
       lastClickedElement = null;
     }
@@ -83,20 +99,85 @@ function handleDatePickerClick(e) {
 
   // Posiciona o datePickerModal
   if (currentTarget.id === "selectDateModal") {
-    positionDatePicker(currentTarget, datePickerModalElement, "above");
-    datePickerModalElement.style.display = "flex";
-    datePickerModalElement.style.flexDirection = "column-reverse";
+    positionModal(currentTarget, referenceElement, "above");
+    referenceElement.style.display = "flex";
+    referenceElement.style.flexDirection = "column-reverse";
     datepickerHeader.classList.add("above");
   } else {
-    positionDatePicker(currentTarget, datePickerModalElement);
-    datePickerModalElement.style.display = "flex";
-    datePickerModalElement.style.flexDirection = "column";
+    positionModal(currentTarget, referenceElement);
+    referenceElement.style.display = "flex";
+    referenceElement.style.flexDirection = "column";
   }
 
   // Passa a função de seleção de data como parâmetro
-  datePicker(datePickerModalElement, (day) => selectDate(day, currentTarget));
+  datePicker(referenceElement, (day) => selectDate(day, currentTarget));
 }
 
+// Handler para clique no dropdown
+function handleDropdownClick(e) {
+  e.stopPropagation();
+
+  if (referenceElement && referenceElement.classList.contains("date-picker")) {
+    portal.removeChild(referenceElement);
+    referenceElement = null;
+  }
+
+  // Armazena o elemento clicado
+  const currentTarget = e.currentTarget;
+
+  // Fecha o dropdown
+  if (referenceElement && lastClickedElement === currentTarget) {
+    portal.removeChild(referenceElement);
+    referenceElement = null;
+    lastClickedElement = null;
+    return;
+  }
+
+  // Armazena o elemento clicado
+  lastClickedElement = currentTarget;
+
+  // Renderiza o dropdown
+  if (!referenceElement) {
+    referenceElement = dropdown();
+    portal.appendChild(referenceElement);
+  }
+
+  // Handler para clique fora do dropdown
+  const clickOutsideDropdownHandler = (e) => {
+    if (
+      referenceElement &&
+      !referenceElement.contains(e.target) &&
+      !currentTarget.contains(e.target)
+    ) {
+      portal.removeChild(referenceElement);
+      referenceElement = null;
+      document.removeEventListener("click", clickOutsideDropdownHandler);
+      lastClickedElement = null;
+    }
+  };
+
+  // Adiciona event listener para itens do dropdown
+  const hourModal = document.getElementById("hourModal");
+  const dropdownItems = referenceElement.querySelectorAll("li");
+  dropdownItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      // Fecha o dropdown ao selecionar um horário
+      document.removeEventListener("click", clickOutsideDropdownHandler);
+      portal.removeChild(referenceElement);
+      referenceElement = null;
+      lastClickedElement = null;
+      hourModal.textContent = item.textContent;
+      hourModal.value = item.textContent;
+    });
+  });
+
+  document.addEventListener("click", clickOutsideDropdownHandler);
+
+  // Posiciona o dropdown
+  positionModal(currentTarget, referenceElement, "below");
+}
+
+// Função de seleção de data
 function selectDate(day, currentTarget) {
   // Seleciona o input de data
   const displayDate =
