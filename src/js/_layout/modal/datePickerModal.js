@@ -5,20 +5,13 @@ export function datePickerModal() {
 
   // HEADER
   const header = document.createElement("header");
-  const iconArrowLeft = document.createElement("i");
-  iconArrowLeft.classList.add("arrow-down", "rotate-left");
 
-  const divMonthYear = document.createElement("div");
   const spanMonth = document.createElement("span");
   spanMonth.classList.add("monthSelected");
   const spanYear = document.createElement("span");
   spanYear.classList.add("yearSelected");
 
-  const iconArrowRight = document.createElement("i");
-  iconArrowRight.classList.add("arrow-down", "rotate-right");
-
-  divMonthYear.append(spanMonth, spanYear);
-  header.append(iconArrowLeft, divMonthYear, iconArrowRight);
+  header.append(spanMonth, spanYear);
 
   // BODY MODAL
   const dateContent = document.createElement("section");
