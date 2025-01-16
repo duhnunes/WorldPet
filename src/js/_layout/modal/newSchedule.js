@@ -109,6 +109,7 @@ export function newScheduleModal() {
   spanHour.textContent = "Hora";
   const divInputBox = document.createElement("div");
   divInputBox.classList.add("input-box");
+  divInputBox.id = "selectHourModal";
   const iconClock = document.createElement("i");
   iconClock.classList.add("clock");
   const spanHourDecimal = document.createElement("span");
