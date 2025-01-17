@@ -25,6 +25,7 @@
     "webpack-dev-server": "^5.2.0"
   },
   "dependencies": {
-    "dayjs": "^1.11.13"
+    "dayjs": "^1.11.13",
+    "imask": "^7.6.1"
   }
 }
