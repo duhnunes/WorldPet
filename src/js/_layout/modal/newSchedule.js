@@ -66,9 +66,10 @@ export function newScheduleModal() {
   const iconPhone = document.createElement("i");
   iconPhone.classList.add("phone");
   const inputPhone = document.createElement("input");
-  inputPhone.type = "text";
+  inputPhone.type = "tel";
   inputPhone.id = "phone";
   inputPhone.placeholder = "(00) 000-000-000";
+  inputPhone.maxLength = "16";
 
   divPhone.append(iconPhone, inputPhone);
   labelPhone.append(spanPhone, divPhone);

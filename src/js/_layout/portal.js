@@ -1,9 +1,12 @@
+import dayjs from "dayjs";
+
 import { newScheduleModal } from "./modal/newSchedule";
 import { datePickerModal } from "./modal/datePickerModal";
 import { positionModal } from "./modal/positionModal";
 import { datePicker } from "./datepicker";
-import dayjs from "dayjs";
 import { dropdown } from "./dropdown";
+import { formSubmit } from "../form/submit";
+import { inputMask } from "./inputMask";
 
 const portal = document.getElementById("portal");
 
@@ -16,8 +19,14 @@ let datepickerHeader;
 let lastClickedElement;
 
 newSchedule.addEventListener("click", (e) => {
+  // Renderiza o modal
   const form = newScheduleModal();
   portal.appendChild(form);
+
+  // Inicializa o submit do formulário
+  formSubmit();
+  // Aplica as máscaras nos inputs
+  inputMask();
 
   // Armazena o botão de fechar
   const closeButton = form.querySelector(".close");
