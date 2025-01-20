@@ -103,4 +103,14 @@
       flex: 1;
     }
   }
+
+  & .required {
+    border-color: var(--accent-danger) !important;
+  }
+}
+
+.btn-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
 }

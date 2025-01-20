@@ -101,6 +101,9 @@ main {
     gap: 0.75rem;
 
     padding: 1.25rem;
+
+    max-height: calc(1.5rem * 5);
+    overflow-y: auto;
   }
 }
 

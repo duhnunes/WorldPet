@@ -5,14 +5,21 @@ button {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  font: var(--label-lg);
 
+  scale: 1;
   transition: background-color 0.45s ease, color 0.45s ease,
-    text-decoration 0.45s ease;
+    text-decoration 0.45s ease, border-color 0.35s ease, scale 0.35s,
+    filter 0.25s ease;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
+  &:active {
+    scale: 0.98;
+  }
 }
 
 button[data-variant="primary"] {
@@ -35,5 +42,28 @@ button[data-variant="link"] {
   &:hover {
     color: var(--content-primary);
     text-decoration: underline;
+  }
+}
+
+button[data-variant="confirm"] {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+
+  background-color: var(--accent-danger);
+
+  &:hover {
+    filter: brightness(0.9);
+  }
+}
+
+button[data-variant="cancel"] {
+  padding: 0.75rem 0.75rem;
+  border-radius: 8px;
+  background-color: transparent;
+  color: var(--content-tertiary);
+  border: 1px solid var(--border-primary);
+
+  &:hover {
+    filter: brightness(1.2);
   }
 }

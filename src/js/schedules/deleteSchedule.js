@@ -1,4 +1,5 @@
 import { scheduleCancel } from "../../services/scheduleCancel";
+import { confirmModal } from "../_layout/modal/confirmModal";
 import { SchedulesDay } from "./schedulesDay";
 
 const periods = document.querySelectorAll(".period");
@@ -16,7 +17,7 @@ periods.forEach((period) => {
       // Confirma que o id foi selecionado.
       if (id) {
         // Confirma se o usuário quer cancelar
-        const isConfirm = confirm(
+        const isConfirm = confirmModal(
           "Tem certeza que deseja cancelar o agendamento?"
         );
 
