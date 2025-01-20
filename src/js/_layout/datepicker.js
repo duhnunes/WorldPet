@@ -1,8 +1,9 @@
 import dayjs from "dayjs";
 
+// Elementos do DatePicker
 const displayDate = document.getElementById("displayDate");
 displayDate.textContent = dayjs().format("DD/MM/YYYY");
-// Elementos do DatePicker
+
 export function datePicker(datePickerModalElement, onSelectDate) {
   const daysContainer = datePickerModalElement.querySelector("#days-container");
   const monthSelected = datePickerModalElement.querySelector(".monthSelected");
@@ -10,22 +11,27 @@ export function datePicker(datePickerModalElement, onSelectDate) {
   const daysOfWeek = datePickerModalElement.querySelector("#weeks-container");
 
   function generateDays(month, year) {
-    daysContainer.innerHTML = "";
+    // Limpa os elementos
     daysOfWeek.innerHTML = "";
+    daysContainer.innerHTML = "";
 
+    // Pega o total de dias do mês
     const numDays = dayjs(`${year}-${month + 1}`).daysInMonth();
     const firstDay = dayjs(`${year}-${month + 1}-1`).day();
 
+    // Adiciona os dias da semana
     for (let i = 0; i < 7; i++) {
       const weekDay = document.createElement("span");
       weekDay.textContent = dayjs().day(i).format("ddd");
       daysOfWeek.appendChild(weekDay);
     }
 
+    // Adiciona dias do final do mês passado
     const prevMonthDays = dayjs(`${year}-${month}-01`).daysInMonth();
     for (let i = firstDay - 1; i >= 0; i--) {
       const emptyDay = document.createElement("span");
       emptyDay.textContent = prevMonthDays - i;
+      emptyDay.classList.add("day");
       emptyDay.classList.add("disabled");
       daysContainer.appendChild(emptyDay);
     }
@@ -57,6 +63,7 @@ export function datePicker(datePickerModalElement, onSelectDate) {
     for (let i = 1; i <= remainingCells; i++) {
       const nextMonthDay = document.createElement("span");
       nextMonthDay.textContent = i;
+      nextMonthDay.classList.add("day");
       nextMonthDay.classList.add("disabled");
       daysContainer.appendChild(nextMonthDay);
     }

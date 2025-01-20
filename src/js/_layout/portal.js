@@ -7,8 +7,9 @@ import { datePicker } from "./datepicker";
 import { dropdown } from "./dropdown";
 import { formSubmit } from "../form/submit";
 import { inputMask } from "./inputMask";
+import { selectDate } from "./selectDate"; // Importa a função selectDate
 
-const portal = document.getElementById("portal");
+export const portal = document.getElementById("portal");
 
 const newSchedule = document.getElementById("newSchedule");
 const openDatePickerButton = document.getElementById("datePicker");
@@ -18,7 +19,7 @@ let referenceElement;
 let datepickerHeader;
 let lastClickedElement;
 
-newSchedule.addEventListener("click", (e) => {
+newSchedule.addEventListener("click", () => {
   // Renderiza o modal
   const form = newScheduleModal();
   portal.appendChild(form);
@@ -40,6 +41,7 @@ newSchedule.addEventListener("click", (e) => {
   dateModal.textContent = dayjs().format("DD/MM/YYYY");
 
   // Handler para clique fora do modal
+  // Handler para clique fora do modal
   const clickOutsideHandler = (e) => {
     if (
       (!form.contains(e.target) &&
@@ -47,10 +49,14 @@ newSchedule.addEventListener("click", (e) => {
         !selectDateModal) ||
       e.target === closeButton
     ) {
-      portal.removeChild(form);
-      document.removeEventListener("click", clickOutsideHandler);
+      // Verifica se o elemento ainda está no portal antes de removê-lo
+      if (portal.contains(form)) {
+        portal.removeChild(form);
+        document.removeEventListener("click", clickOutsideHandler);
+      }
     }
   };
+
   document.addEventListener("click", clickOutsideHandler);
 
   // Handler para clique no botão de hora
@@ -59,48 +65,36 @@ newSchedule.addEventListener("click", (e) => {
 });
 
 // Handler para clique no botão de data
+// Handler para clique no botão de data
 function handleDatePickerClick(e) {
   e.stopPropagation();
-
-  // Fecha o dropdown se estiver aberto
-  if (referenceElement && referenceElement.classList.contains("dropdown")) {
-    portal.removeChild(referenceElement);
-    referenceElement = null;
-  }
-
-  // Armazena o elemento clicado
   const currentTarget = e.currentTarget;
 
-  // Fecha o datePickerModal
-  if (referenceElement && lastClickedElement === currentTarget) {
-    portal.removeChild(referenceElement);
-    referenceElement = null;
-    lastClickedElement = null;
-    return;
-  }
+  // Fecha qualquer modal aberto
+  closeOpenModals();
 
   // Armazena o elemento clicado
   lastClickedElement = currentTarget;
 
   // Renderiza o datePickerModal
-  if (!referenceElement) {
-    referenceElement = datePickerModal();
-    datepickerHeader = referenceElement.querySelector("header");
-    portal.appendChild(referenceElement);
-  }
+  referenceElement = datePickerModal();
+  datepickerHeader = referenceElement.querySelector("header");
+  portal.appendChild(referenceElement);
 
   // Handler para clique fora do datePickerModal
   const clickOutsideHandler = (e) => {
     if (
-      openDatePickerButton &&
-      !openDatePickerButton.contains(e.target) &&
       referenceElement &&
-      !referenceElement.contains(e.target)
+      !referenceElement.contains(e.target) &&
+      !currentTarget.contains(e.target)
     ) {
-      portal.removeChild(referenceElement);
-      referenceElement = null;
-      document.removeEventListener("click", clickOutsideHandler);
-      lastClickedElement = null;
+      // Verifica se o elemento ainda está no portal antes de removê-lo
+      if (portal.contains(referenceElement)) {
+        portal.removeChild(referenceElement);
+        referenceElement = null;
+        document.removeEventListener("click", clickOutsideHandler);
+        lastClickedElement = null;
+      }
     }
   };
 
@@ -119,37 +113,23 @@ function handleDatePickerClick(e) {
   }
 
   // Passa a função de seleção de data como parâmetro
-  datePicker(referenceElement, (day) => selectDate(day, currentTarget));
+  datePicker(referenceElement, (day) => selectDate(day, currentTarget, portal));
 }
 
 // Handler para clique no dropdown
 function handleDropdownClick(e) {
   e.stopPropagation();
-
-  if (referenceElement && referenceElement.classList.contains("date-picker")) {
-    portal.removeChild(referenceElement);
-    referenceElement = null;
-  }
-
-  // Armazena o elemento clicado
   const currentTarget = e.currentTarget;
 
-  // Fecha o dropdown
-  if (referenceElement && lastClickedElement === currentTarget) {
-    portal.removeChild(referenceElement);
-    referenceElement = null;
-    lastClickedElement = null;
-    return;
-  }
+  // Fecha qualquer modal aberto
+  closeOpenModals();
 
   // Armazena o elemento clicado
   lastClickedElement = currentTarget;
 
   // Renderiza o dropdown
-  if (!referenceElement) {
-    referenceElement = dropdown();
-    portal.appendChild(referenceElement);
-  }
+  referenceElement = dropdown();
+  portal.appendChild(referenceElement);
 
   // Handler para clique fora do dropdown
   const clickOutsideDropdownHandler = (e) => {
@@ -158,12 +138,17 @@ function handleDropdownClick(e) {
       !referenceElement.contains(e.target) &&
       !currentTarget.contains(e.target)
     ) {
-      portal.removeChild(referenceElement);
-      referenceElement = null;
-      document.removeEventListener("click", clickOutsideDropdownHandler);
-      lastClickedElement = null;
+      // Verifica se o elemento ainda está no portal antes de removê-lo
+      if (portal.contains(referenceElement)) {
+        portal.removeChild(referenceElement);
+        referenceElement = null;
+        document.removeEventListener("click", clickOutsideDropdownHandler);
+        lastClickedElement = null;
+      }
     }
   };
+
+  document.addEventListener("click", clickOutsideDropdownHandler);
 
   // Adiciona event listener para itens do dropdown
   const hourModal = document.getElementById("hourModal");
@@ -172,7 +157,9 @@ function handleDropdownClick(e) {
     item.addEventListener("click", () => {
       // Fecha o dropdown ao selecionar um horário
       document.removeEventListener("click", clickOutsideDropdownHandler);
-      portal.removeChild(referenceElement);
+      if (portal.contains(referenceElement)) {
+        portal.removeChild(referenceElement);
+      }
       referenceElement = null;
       lastClickedElement = null;
       hourModal.textContent = item.textContent;
@@ -180,27 +167,16 @@ function handleDropdownClick(e) {
     });
   });
 
-  document.addEventListener("click", clickOutsideDropdownHandler);
-
   // Posiciona o dropdown
   positionModal(currentTarget, referenceElement, "below");
 }
 
-// Função de seleção de data
-function selectDate(day, currentTarget) {
-  // Seleciona o input de data
-  const displayDate =
-    currentTarget.id === "selectDateModal"
-      ? document.getElementById("dateModal")
-      : document.getElementById("displayDate");
+openDatePickerButton.addEventListener("click", handleDatePickerClick);
 
-  // Formata a data selecionada
-  const selectedDate = dayjs(
-    `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${day}`
-  ).format("DD/MM/YYYY");
-  if (displayDate) {
-    displayDate.textContent = selectedDate;
+function closeOpenModals() {
+  if (referenceElement && portal.contains(referenceElement)) {
+    portal.removeChild(referenceElement);
+    referenceElement = null;
+    lastClickedElement = null;
   }
 }
-
-openDatePickerButton.addEventListener("click", handleDatePickerClick);
