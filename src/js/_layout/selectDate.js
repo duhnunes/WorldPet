@@ -14,9 +14,10 @@ export function selectDate(day, currentTarget) {
   // Formata a data selecionada
   const selectedDate = dayjs(
     `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${day}`
-  ).format("DD/MM/YYYY");
+  ).format("YYYY-MM-DD");
   if (displayDate) {
-    displayDate.textContent = selectedDate;
+    displayDate.textContent = dayjs(selectedDate).format("DD/MM/YYYY");
+    displayDate.dataset.date = selectedDate;
   }
 
   // Fecha o datePickerModal

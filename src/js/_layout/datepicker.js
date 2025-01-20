@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 
 // Elementos do DatePicker
 const displayDate = document.getElementById("displayDate");
+displayDate.value = dayjs().format("DD/MM/YYYY");
 displayDate.textContent = dayjs().format("DD/MM/YYYY");
 
 export function datePicker(datePickerModalElement, onSelectDate) {

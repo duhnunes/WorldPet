@@ -19,3 +19,9 @@ import "./css/styles/footer.css";
 
 // JS
 import "./js/_layout/portal.js";
+
+import "./js/form/submit.js";
+import "./js/form/dateChange.js";
+import "./js/schedules/deleteSchedule.js";
+
+import "./js/schedulesOnPageLoad.js";
