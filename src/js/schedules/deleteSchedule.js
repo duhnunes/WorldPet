@@ -1,5 +1,6 @@
 import { scheduleCancel } from "../../services/scheduleCancel";
 import { confirmModal } from "../_layout/modal/confirmModal";
+import { toast } from "../_layout/toast";
 import { SchedulesDay } from "./schedulesDay";
 
 const periods = document.querySelectorAll(".period");
@@ -16,17 +17,21 @@ periods.forEach((period) => {
 
       // Confirma que o id foi selecionado.
       if (id) {
-        // Confirma se o usuário quer cancelar
-        const isConfirm = confirmModal(
-          "Tem certeza que deseja cancelar o agendamento?"
-        );
+        try {
+          // Confirma se o usuário quer cancelar
+          await confirmModal("Tem certeza que deseja cancelar o agendamento?");
 
-        if (isConfirm) {
           // Faz a requisição da API para cancelar.
           await scheduleCancel({ id });
 
           // Recarrega os agendamentos.
           SchedulesDay();
+        } catch (error) {
+          console.error(error);
+          toast(
+            "Cancelamento de agendamento não foi confirmado. Verifique o console para mais informação.",
+            false
+          );
         }
       }
     }
