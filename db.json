@@ -1,0 +1,28 @@
+{
+  "schedules": [
+    {
+      "id": "1737471470973",
+      "client": "Tutor",
+      "pet": "Pet",
+      "tel": "21387123897",
+      "service": "Banho e Tosa",
+      "when": "2025-01-22T13:00:00.000Z"
+    },
+    {
+      "id": "1737472007349",
+      "client": "",
+      "pet": "",
+      "tel": "",
+      "service": "",
+      "when": "2025-01-21T22:00:00.000Z"
+    },
+    {
+      "id": "1737472328001",
+      "client": "Tati Felix",
+      "pet": "DuH Nunes",
+      "tel": "69193761372",
+      "service": "Amor eterno",
+      "when": "2025-01-21T16:00:00.000Z"
+    }
+  ]
+}
