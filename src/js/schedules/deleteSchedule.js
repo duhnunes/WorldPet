@@ -1,7 +1,6 @@
 import { scheduleCancel } from "../../services/scheduleCancel";
 import { confirmModal } from "../_layout/modal/confirmModal";
 import { toast } from "../_layout/toast";
-import { SchedulesDay } from "./schedulesDay";
 
 const periods = document.querySelectorAll(".period");
 

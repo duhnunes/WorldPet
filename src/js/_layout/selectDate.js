@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import { portal } from "./portal";
 import { SchedulesDay } from "../schedules/schedulesDay";
+import { AutoDeleteSchedules } from "../../services/autoDeleteSchedure";
 
 let referenceElement = null;
 let lastClickedElement = null;
@@ -20,6 +21,7 @@ export function selectDate(day, currentTarget) {
     displayDate.textContent = dayjs(selectedDate).format("DD/MM/YYYY");
     displayDate.dataset.date = selectedDate;
     SchedulesDay();
+    AutoDeleteSchedules();
   }
 
   // Fecha o datePickerModal

@@ -3,6 +3,7 @@ import { createSchedule } from "../schedules/createSchedule";
 import { SchedulesDay } from "../schedules/schedulesDay";
 import { closeOpenModals } from "../_layout/portal";
 import { toast } from "../_layout/toast";
+import { AutoDeleteSchedules } from "../../services/autoDeleteSchedure";
 
 export function formSubmit() {
   const form = document.querySelector("form");
@@ -51,6 +52,7 @@ export function formSubmit() {
 
         await createSchedule(scheduleData);
         await SchedulesDay();
+        await AutoDeleteSchedules();
 
         form.reset();
         closeOpenModals("newScheduleFormModal");
