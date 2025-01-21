@@ -12,7 +12,7 @@ export function confirmModal(message) {
     const header = document.createElement("header");
 
     const title = document.createElement("h2");
-    title.textContent = "Error";
+    title.textContent = "Confirmação";
     const description = document.createElement("p");
     description.textContent = message;
 
