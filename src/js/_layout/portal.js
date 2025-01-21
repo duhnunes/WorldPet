@@ -155,8 +155,7 @@ function handleDropdownClick(e) {
       referenceElement = null;
       lastClickedElement = null;
       hourModal.textContent = item.textContent;
-      hourModal.value = item.textContent; // Certifique-se de que o valor está sendo corretamente definido
-      console.log("Selected Time:", hourModal.value); // Adiciona um log para verificar o valor
+      hourModal.value = item.textContent;
     });
   });
 

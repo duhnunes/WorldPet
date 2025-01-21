@@ -12,6 +12,7 @@ import "./css/components/button.css";
 import "./css/components/modal/modal.css";
 import "./css/components/modal/datepicker.css";
 import "./css/components/dropdown.css";
+import "./css/components/toast.css";
 
 import "./css/styles/navbar.css";
 import "./css/styles/main.css";

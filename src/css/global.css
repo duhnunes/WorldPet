@@ -12,24 +12,24 @@
   --content-secondary: #98959d;
   --content-tertiary: #666666;
   --content-brand: #9282fa;
+  --content-danger: #721c24;
+  --content-success: #155724;
 
   --bg-primary: #151515;
   --bg-secondary: #1e1e1e;
   --bg-tertiary: #23242c;
   --bg-brand: #9282fa;
   --bg-highlights: #bdb4fa;
+  --bg-danger: #f8d7da;
+  --bg-success: #d4edda;
 
   --border-primary: #3e3c41;
   --border-secondary: #86818c;
   --border-brand: #9282fa;
   --border-divisor: #353339;
+  --border-danger: #f5c6cb;
+  --border-success: #c3e6cb;
 
-  --accent-blue: #027df0;
-  --accent-blue-light: #16487a;
-  --accent-yellow: #f0dc02;
-  --accent-yellow-light: #756e1b;
-  --accent-orange: #f09102;
-  --accent-orange-light: #75501b;
   --accent-danger: #ff0000;
 
   /* FONTS */

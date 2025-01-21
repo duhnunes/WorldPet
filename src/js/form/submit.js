@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import { createSchedule } from "../schedules/createSchedule";
 import { SchedulesDay } from "../schedules/schedulesDay";
 import { closeOpenModals } from "../_layout/portal";
+import { toast } from "../_layout/toast";
 
 export function formSubmit() {
   const form = document.querySelector("form");
@@ -58,7 +59,10 @@ export function formSubmit() {
       }
     } catch (error) {
       console.error("Erro:", error);
-      alert("Houve um erro ao agendar. Por favor, tente novamente.");
+      toast(
+        "Houve um erro ao agendar. Verifique o console para mais informações.",
+        false
+      );
     }
   };
 }

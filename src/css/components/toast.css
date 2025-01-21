@@ -1,0 +1,29 @@
+.toast-container {
+  --bg-color: var(--bg-danger);
+  --border-color: var(--border-danger);
+  --content-color: var(--content-danger);
+
+  position: fixed;
+  bottom: 1.875rem;
+  left: 1.875rem;
+
+  padding: 0.75rem;
+
+  color: var(--content-color);
+
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+
+  cursor: pointer;
+  transition: filter 0.25s ease;
+  z-index: 20;
+
+  & h2 {
+    font: var(--title);
+  }
+
+  &:hover {
+    filter: brightness(0.95);
+  }
+}

@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import { toast } from "../_layout/toast";
 
 const periodMorning = document.getElementById("morning");
 const periodAfternoon = document.getElementById("afternoon");
@@ -61,7 +62,10 @@ export function showSchedules({ dailySchedules }) {
       }
     });
   } catch (error) {
-    console.log(error);
-    alert("Não foi possível exibir os agendamentos.");
+    console.error(error);
+    toast(
+      "Não foi possível exibir os agendamentos. Verifique o console para mais informações.",
+      false
+    );
   }
 }

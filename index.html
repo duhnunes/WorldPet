@@ -198,11 +198,17 @@
     <!-- MODAL ERROR MESSAGE LAYOUT -->
     <!-- <div class="modal-base" id="errorMsgModal" style="display: none">
       <div class="modal-container">
-        <header>
-          <i class="close" onclick="closeErrorModal()"></i>
-          <h2>Error</h2>
-          <p>Algo deu errado, tente novamente.</p>
-        </header>
+        <form class="modal-container">
+          <header>
+            <i class="close" onclick="closeErrorModal()"></i>
+            <h2>Error</h2>
+            <p>Algo deu errado, tente novamente.</p>
+          </header>
+          <div class="btn-container">
+            <button type="button" data-variant="confirm" id="confirm" class="confirm-delete">Confirmar</button>
+            <button type="button" data-variant="cancel" class="cancel">Cancelar</button>
+          </div>
+        </form>
       </div>
     </div> -->
 
@@ -223,6 +229,12 @@
         <li>20:00</li>
         <li>21:00</li>
       </ul>
+    </div> -->
+
+    <!-- TOAST MSG LAYOUT -->
+    <!-- <div class="toast-container">
+      <h2>Title</h2>
+      <p>Mensagem de toast!</p>
     </div> -->
   </body>
 </html>

@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import { apiConfig } from "./apiConfig";
+import { toast } from "../js/_layout/toast";
 
 export async function FetchSchedules({ date }) {
   try {
@@ -16,7 +17,7 @@ export async function FetchSchedules({ date }) {
 
     return dailySchedules;
   } catch (error) {
-    console.log(error);
-    alert("Não foi possível buscar os agendamentos do dia selecionado.");
+    console.error(error);
+    toast("Não foi possível buscar os agendamentos do dia selecionado.", false);
   }
 }

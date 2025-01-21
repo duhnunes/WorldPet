@@ -1,4 +1,5 @@
 import { apiConfig } from "../../services/apiConfig.js";
+import { toast } from "../_layout/toast.js";
 
 export async function createSchedule(scheduleData) {
   try {
@@ -10,7 +11,10 @@ export async function createSchedule(scheduleData) {
       body: JSON.stringify(scheduleData),
     });
   } catch (error) {
-    console.log(error);
-    alert("Não foi possível agendar. Tente novamente mais tarde.");
+    console.error(error);
+    toast(
+      "Não foi possível agendar. Verifique o console para mais informações.",
+      false
+    );
   }
 }
