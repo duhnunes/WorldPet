@@ -24,8 +24,13 @@ periods.forEach((period) => {
           // Faz a requisição da API para cancelar.
           await scheduleCancel({ id });
 
+          // Remove o item <li> do DOM.
+          item.remove();
+
           // Recarrega os agendamentos.
           SchedulesDay();
+
+          toast("Agendamento cancelado com sucesso!");
         } catch (error) {
           console.error(error);
           toast(

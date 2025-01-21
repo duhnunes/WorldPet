@@ -1,16 +1,10 @@
 import dayjs from "dayjs";
 import { toast } from "../_layout/toast";
 
-const periodMorning = document.getElementById("morning");
-const periodAfternoon = document.getElementById("afternoon");
-const periodNight = document.getElementById("night");
-
-export function showSchedules({ dailySchedules }) {
+export function showSchedules({ dailySchedules, period }) {
   try {
-    // Limpa as listas
-    periodMorning.innerHTML = "";
-    periodAfternoon.innerHTML = "";
-    periodNight.innerHTML = "";
+    // Limpa os agendamentos anteriores do período específico
+    period.innerHTML = "";
 
     // Renderiza os agendamentos por período.
     dailySchedules.forEach((schedule) => {
@@ -52,14 +46,7 @@ export function showSchedules({ dailySchedules }) {
       item.append(hourSpan, divClientDay, typeService, removeBtn);
 
       // Renderiza o agendamento no período correspondente
-      const hour = parseInt(dayjs(schedule.when).format("HH"), 10);
-      if (hour < 12) {
-        periodMorning.appendChild(item);
-      } else if (hour >= 12 && hour < 18) {
-        periodAfternoon.appendChild(item);
-      } else {
-        periodNight.appendChild(item);
-      }
+      period.appendChild(item);
     });
   } catch (error) {
     console.error(error);

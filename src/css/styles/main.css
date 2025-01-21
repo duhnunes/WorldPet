@@ -105,6 +105,14 @@ main {
 
     max-height: calc(1.5rem * 5);
     overflow-y: auto;
+
+    & .empty {
+      font: var(--p-md);
+      color: var(--content-tertiary);
+
+      text-align: center;
+      text-transform: uppercase;
+    }
   }
 }
 
