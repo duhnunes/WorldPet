@@ -3,7 +3,8 @@ main {
   flex-direction: column;
   gap: 2rem;
 
-  width: 54.375rem;
+  width: 100%;
+  max-width: 54.375rem;
   margin-inline: auto;
   padding: 5rem;
 
