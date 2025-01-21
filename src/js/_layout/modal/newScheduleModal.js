@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 export function newScheduleModal() {
   // MODAL
   const modal = document.createElement("div");
@@ -115,7 +117,7 @@ export function newScheduleModal() {
   iconClock.classList.add("clock");
   const spanHourDecimal = document.createElement("span");
   spanHourDecimal.id = "hourModal";
-  spanHourDecimal.textContent = "12:00";
+  spanHourDecimal.textContent = "Horário";
   const iconArrowDown2 = document.createElement("i");
   iconArrowDown2.classList.add("arrow-down");
 

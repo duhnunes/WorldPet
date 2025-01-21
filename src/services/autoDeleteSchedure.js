@@ -1,6 +1,5 @@
 import dayjs from "dayjs";
 import { FetchSchedules } from "./FetchSchedules";
-import { toast } from "../js/_layout/toast";
 import { apiConfig } from "./apiConfig";
 
 export async function AutoDeleteSchedules() {
