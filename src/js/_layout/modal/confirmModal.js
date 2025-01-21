@@ -1,7 +1,7 @@
 import { closeOpenModals } from "../portal";
 
 export function confirmModal(message) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const modal = document.createElement("div");
     modal.classList.add("modal-base");
     modal.id = "errorMsgModal";
@@ -49,7 +49,7 @@ export function confirmModal(message) {
     };
     cancelBtn.onclick = () => {
       closeOpenModals("errorMsgModal");
-      reject(false);
+      resolve(false);
     };
   });
 }

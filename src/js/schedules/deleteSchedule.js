@@ -17,27 +17,30 @@ periods.forEach((period) => {
 
       // Confirma que o id foi selecionado.
       if (id) {
-        try {
-          // Confirma se o usuário quer cancelar
-          await confirmModal("Tem certeza que deseja cancelar o agendamento?");
+        // Confirma se o usuário quer cancelar
+        const isConfirmed = await confirmModal(
+          "Tem certeza que deseja cancelar o agendamento?"
+        );
 
-          // Faz a requisição da API para cancelar.
-          await scheduleCancel({ id });
-
-          // Remove o item <li> do DOM.
-          item.remove();
-
-          // Recarrega os agendamentos.
-          SchedulesDay();
-
-          toast("Agendamento cancelado com sucesso!");
-        } catch (error) {
-          console.error(error);
-          toast(
-            "Cancelamento de agendamento não foi confirmado. Verifique o console para mais informação.",
-            false
-          );
+        if (!isConfirmed) {
+          return;
         }
+
+        // Faz a requisição da API para cancelar.
+        await scheduleCancel({ id });
+
+        // Remove o item <li> do DOM.
+        item.remove();
+
+        // Verifica se o período está vazio e adiciona o <li> "Nada marcado" se necessário.
+        if (!period.querySelector("li")) {
+          const li = document.createElement("li");
+          li.textContent = "Nada marcado";
+          li.classList.add("empty");
+          period.appendChild(li);
+        }
+
+        toast("Agendamento cancelado com sucesso!", true);
       }
     }
   });
