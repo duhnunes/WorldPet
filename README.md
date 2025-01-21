@@ -46,11 +46,11 @@ O objetivo do desafio é construir uma página para os clientes agendarem um hor
 ## ⚒️ Instalation
 
 - Clone repository:
-  - Using CLI: `gh repo clone duhnunes/ListaDeCompras`
-  - Using GIT: `git clone https://github.com/duhnunes/ListaDeCompras.git`
+  - Using CLI: `gh repo clone duhnunes/WorldPet`
+  - Using GIT: `git clone https://github.com/duhnunes/WorldPet.git`
 - Open in VSCode:
-  - Type `code ListaDeCompras`
-    - or Go to folder `cd ListaDeCompras` and type `code .`
+  - Type `code WorldPet`
+    - or Go to folder `cd WorldPet` and type `code .`
   - Start Json-Server in Terminal with `pnpm run server`
   - Open other Terminal and Start Application with `pnpm run dev`
 - Open in Browser:
