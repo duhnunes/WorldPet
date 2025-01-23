@@ -29,7 +29,6 @@ O objetivo do desafio é construir uma página para os clientes agendarem um hor
 
 ## 🔧 Features
 
-- [x] Initial Release
 - [x] Webpack instaled
 - [x] Json-Server
 - [x] HTML / CSS
@@ -40,7 +39,10 @@ O objetivo do desafio é construir uma página para os clientes agendarem um hor
 - [x] Toasts
 - [x] Auto Delete Schedules
   - Responsável por deletar as Schedules quando passar do horário determinado
-- [ ] Limit Schedule per Hour
+- [x] Limit Schedule per Hour
+- [x] Disable Past hour
+  - Sistema responsável por verificar e desabilitar os horários que já passaram em comparação a hora atual.
+- [ ] Validation
 - [ ] Motion
 - [x] A tecnologia de <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting/Using_CSS_nesting" target="_blank" rel="noopener noreferrer" alt="Link para a documentação sobre CSS Nesting">CSS Nesting</a> está presente nesse projeto.
 - [ ] Mobile até 390px
