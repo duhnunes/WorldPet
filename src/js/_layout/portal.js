@@ -8,6 +8,8 @@ import { dropdown } from "./dropdown";
 import { formSubmit } from "../form/submit";
 import { inputMask } from "./inputMask";
 import { selectDate } from "./selectDate";
+import { HoursAvailable } from "../form/hoursAvailable";
+import { FetchSchedules } from "../../services/FetchSchedules";
 
 export const portal = document.getElementById("portal");
 
@@ -39,7 +41,12 @@ newSchedule.addEventListener("click", () => {
   if (selectDateModal) {
     selectDateModal.addEventListener("click", handleDatePickerClick);
   }
-  dateModal.textContent = dayjs().format("DD/MM/YYYY");
+
+  if (!dateModal.dataset.date) {
+    const today = dayjs().format("YYYY-MM-DD");
+    dateModal.dataset.date = today;
+    dateModal.textContent = dayjs(today).format("DD/MM/YYYY");
+  }
 
   // Handler para clique fora do modal
   const clickOutsideHandler = (e) => {
@@ -64,7 +71,6 @@ newSchedule.addEventListener("click", () => {
   selectHour.addEventListener("click", handleDropdownClick);
 });
 
-// Handler para clique no botão de data
 // Handler para clique no botão de data
 function handleDatePickerClick(e) {
   e.stopPropagation();
@@ -117,15 +123,27 @@ function handleDatePickerClick(e) {
 }
 
 // Handler para clique no dropdown
-function handleDropdownClick(e) {
+async function handleDropdownClick(e) {
   e.stopPropagation();
   const currentTarget = e.currentTarget;
 
   closeOpenModals();
   lastClickedElement = currentTarget;
 
+  // Seleciona a data e busca os agendamentos do dia
+  const date = document.getElementById("dateModal").dataset.date;
+  console.log("Selected date:", date);
+  const dailySchedules = await FetchSchedules({ date });
+
+  // Renderiza o dropdown
   referenceElement = dropdown();
   portal.appendChild(referenceElement);
+
+  // Obtém o container para os horários disponíveis
+  const hoursContainer = referenceElement.querySelector("#hours");
+
+  // Chama HoursAvailable para obter e renderizar os horários disponíveis
+  HoursAvailable({ date, dailySchedules, container: hoursContainer });
 
   const clickOutsideDropdownHandler = (e) => {
     if (
