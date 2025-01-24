@@ -10,7 +10,8 @@ button {
   scale: 1;
   transition: background-color 0.45s ease, color 0.45s ease,
     text-decoration 0.45s ease, border-color 0.35s ease, scale 0.35s,
-    filter 0.25s ease;
+    filter 0.25s ease, outline 0.25s ease, outline-offset 0.25s ease,
+    box-shadow 0.25s ease;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -19,6 +20,14 @@ button {
 
   &:active {
     scale: 0.98;
+  }
+
+  &:focus,
+  &:focus-visible,
+  &:focus-within {
+    outline: 1px solid var(--content-primary);
+    outline-offset: 1px;
+    box-shadow: 0 0 0 2px var(--content-primary);
   }
 }
 
