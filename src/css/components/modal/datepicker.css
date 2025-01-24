@@ -2,37 +2,70 @@
   position: absolute;
 
   width: 190px;
-  padding: 0;
 
   background-color: var(--bg-tertiary);
   border: 1px solid var(--border-primary);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0 0 0 / 0.1);
 
-  max-height: 0%;
-  opacity: 1;
+  max-height: none;
   z-index: 20;
   overflow: hidden;
-  animation: openDatePicker 0.25s linear both;
+  animation: openToBottom 0.25s linear both;
+  transform-origin: top;
   transition: 0.25s;
+
+  &.above {
+    transform-origin: bottom;
+    animation: openToTop 0.25s linear both;
+  }
 }
 
-@keyframes openDatePicker {
+@keyframes openToBottom {
+  from {
+    clip-path: inset(0 0 100% 0);
+    opacity: 0;
+  }
   to {
-    transform: translateY(0px);
-    max-height: 50%;
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
   }
 }
 .closeDatePicker {
-  animation: closeDatePicker 0.25s linear both;
+  animation: closeToBottom 0.25s linear both;
+
+  &.above {
+    animation: closeToTop 0.25s linear both;
+  }
 }
-@keyframes closeDatePicker {
+@keyframes closeToBottom {
   from {
-    transform: translateY(0px);
-    max-height: 100%;
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
   }
   to {
-    max-height: 0%;
+    clip-path: inset(0 0 100% 0);
+    opacity: 0;
+  }
+}
+@keyframes openToTop {
+  from {
+    clip-path: inset(100% 0 0 0);
+    opacity: 0;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+@keyframes closeToTop {
+  from {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+  to {
+    clip-path: inset(100% 0 0 0);
+    opacity: 0;
   }
 }
 .anim-container {

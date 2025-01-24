@@ -117,6 +117,7 @@ function handleDatePickerClick(e) {
   if (currentTarget.id === "selectDateModal") {
     const insideDiv = referenceElement.querySelector(".anim-container");
     positionModal(currentTarget, referenceElement, "above");
+    referenceElement.classList.add("above");
     insideDiv.style.flexDirection = "column-reverse";
     datepickerHeader.classList.add("above");
   } else {
@@ -137,7 +138,6 @@ async function handleDropdownClick(e) {
 
   // Seleciona a data e busca os agendamentos do dia
   const date = document.getElementById("dateModal").dataset.date;
-  console.log("Selected date:", date);
   const dailySchedules = await FetchSchedules({ date });
 
   // Renderiza o dropdown
@@ -157,10 +157,18 @@ async function handleDropdownClick(e) {
       !currentTarget.contains(e.target)
     ) {
       if (portal.contains(referenceElement)) {
-        portal.removeChild(referenceElement);
-        referenceElement = null;
-        document.removeEventListener("click", clickOutsideDropdownHandler);
-        lastClickedElement = null;
+        referenceElement.classList.add("closeDropdown");
+
+        referenceElement.addEventListener(
+          "animationend",
+          () => {
+            portal.removeChild(referenceElement);
+            referenceElement = null;
+            document.removeEventListener("click", clickOutsideDropdownHandler);
+            lastClickedElement = null;
+          },
+          { once: true }
+        );
       }
     }
   };
