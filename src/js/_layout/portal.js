@@ -58,7 +58,11 @@ newSchedule.addEventListener("click", () => {
     ) {
       // Verifica se o elemento ainda está no portal antes de removê-lo
       if (portal.contains(form)) {
-        portal.removeChild(form);
+        const container = document.querySelector(".modal-container");
+        container.classList.add("closeModal");
+        form.addEventListener("animationend", () => {
+          portal.removeChild(form);
+        });
         document.removeEventListener("click", clickOutsideHandler);
       }
     }
