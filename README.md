@@ -38,12 +38,12 @@ O objetivo do desafio é construir uma página para os clientes agendarem um hor
 - [x] Dropdown
 - [x] Toasts
 - [x] Auto Delete Schedules
-  - Responsável por deletar as Schedules quando passar do horário determinado
+  - Sistema responsável por deletar as Schedules quando passar do horário determinado
 - [x] Limit Schedule per Hour
 - [x] Disable Past hour
   - Sistema responsável por verificar e desabilitar os horários que já passaram em comparação a hora atual.
 - [x] Motion
-- [ ] Validation
+- [x] Validation
 - [x] A tecnologia de <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting/Using_CSS_nesting" target="_blank" rel="noopener noreferrer" alt="Link para a documentação sobre CSS Nesting">CSS Nesting</a> está presente nesse projeto.
 - [ ] Mobile até 390px
 
