@@ -20,17 +20,13 @@ export function toast(message, boo = "true") {
   portal.appendChild(toast);
 
   let removed = false;
-  // Clique para fechar
-  toast.onclick = () => {
-    if (!removed) {
-      portal.removeChild(toast);
-      removed = true;
-    }
-  };
   // Some depois de segundos
   setTimeout(() => {
     if (!removed) {
-      portal.removeChild(toast);
+      toast.classList.add("closeToast");
+      toast.addEventListener("animationend", () => {
+        portal.removeChild(toast);
+      });
       removed = true;
     }
   }, 3000);

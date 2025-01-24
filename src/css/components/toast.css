@@ -17,6 +17,8 @@
 
   cursor: pointer;
   transition: filter 0.25s ease;
+  animation: openToast 0.15s linear;
+
   z-index: 20;
 
   & h2 {
@@ -25,5 +27,29 @@
 
   &:hover {
     filter: brightness(0.95);
+  }
+}
+
+@keyframes openToast {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.closeToast {
+  animation: closeToast 0.15s linear;
+}
+@keyframes closeToast {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(100%);
   }
 }
