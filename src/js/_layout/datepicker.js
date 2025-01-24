@@ -51,7 +51,10 @@ export function datePicker(datePickerModalElement, onSelectDate) {
         dayElement.classList.add("disabled");
       } else {
         dayElement.addEventListener("click", () => {
-          onSelectDate(day);
+          datePickerModalElement.classList.add("closeDatePicker");
+          datePickerModalElement.addEventListener("animationend", () => {
+            onSelectDate(day);
+          });
         });
       }
 
