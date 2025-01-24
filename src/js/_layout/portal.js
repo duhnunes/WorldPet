@@ -80,6 +80,23 @@ function handleDatePickerClick(e) {
   e.stopPropagation();
   const currentTarget = e.currentTarget;
 
+  // Se o datePicker já está aberto e o mesmo elemento foi clicado, fecha o datePicker com animação
+  if (referenceElement && lastClickedElement === currentTarget) {
+    if (portal.contains(referenceElement)) {
+      referenceElement.classList.add("closeDatePicker");
+      referenceElement.addEventListener(
+        "animationend",
+        () => {
+          portal.removeChild(referenceElement);
+          referenceElement = null;
+          lastClickedElement = null;
+        },
+        { once: true }
+      );
+    }
+    return;
+  }
+
   // Fecha qualquer modal aberto
   closeOpenModals();
 
@@ -104,10 +121,12 @@ function handleDatePickerClick(e) {
         referenceElement.addEventListener(
           "animationend",
           () => {
-            portal.removeChild(referenceElement);
-            referenceElement = null;
-            document.removeEventListener("click", clickOutsideHandler);
-            lastClickedElement = null;
+            if (referenceElement && portal.contains(referenceElement)) {
+              portal.removeChild(referenceElement);
+              referenceElement = null;
+              document.removeEventListener("click", clickOutsideHandler);
+              lastClickedElement = null;
+            }
           },
           { once: true }
         );
@@ -129,7 +148,13 @@ function handleDatePickerClick(e) {
   }
 
   // Passa a função de seleção de data como parâmetro
-  datePicker(referenceElement, (day) => selectDate(day, currentTarget, portal));
+  datePicker(referenceElement, (day) => {
+    selectDate(day, currentTarget, portal);
+
+    // Permite reabrir o datePicker após a seleção da data
+    closeOpenModals();
+    lastClickedElement = null; // Permite reabrir o datePicker
+  });
 }
 
 // Handler para clique no dropdown
@@ -137,7 +162,27 @@ async function handleDropdownClick(e) {
   e.stopPropagation();
   const currentTarget = e.currentTarget;
 
+  // Se o dropdown já está aberto e o mesmo elemento foi clicado, fecha o dropdown com animação
+  if (referenceElement && lastClickedElement === currentTarget) {
+    if (portal.contains(referenceElement)) {
+      referenceElement.classList.add("closeDropdown");
+      referenceElement.addEventListener(
+        "animationend",
+        () => {
+          portal.removeChild(referenceElement);
+          referenceElement = null;
+          lastClickedElement = null;
+        },
+        { once: true }
+      );
+    }
+    return;
+  }
+
+  // Fecha qualquer modal aberto
   closeOpenModals();
+
+  // Armazena o elemento clicado
   lastClickedElement = currentTarget;
 
   // Seleciona a data e busca os agendamentos do dia
@@ -167,14 +212,18 @@ async function handleDropdownClick(e) {
     ) {
       if (portal.contains(referenceElement)) {
         referenceElement.classList.add("closeDropdown");
-
         referenceElement.addEventListener(
           "animationend",
           () => {
-            portal.removeChild(referenceElement);
-            referenceElement = null;
-            document.removeEventListener("click", clickOutsideDropdownHandler);
-            lastClickedElement = null;
+            if (referenceElement && portal.contains(referenceElement)) {
+              portal.removeChild(referenceElement);
+              referenceElement = null;
+              document.removeEventListener(
+                "click",
+                clickOutsideDropdownHandler
+              );
+              lastClickedElement = null;
+            }
           },
           { once: true }
         );
@@ -194,8 +243,10 @@ async function handleDropdownClick(e) {
         referenceElement.addEventListener(
           "animationend",
           () => {
-            portal.removeChild(referenceElement);
-            referenceElement = null;
+            if (referenceElement && portal.contains(referenceElement)) {
+              portal.removeChild(referenceElement);
+              referenceElement = null;
+            }
           },
           { once: true }
         );
