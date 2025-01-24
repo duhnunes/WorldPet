@@ -246,6 +246,10 @@ async function handleDropdownClick(e) {
             if (referenceElement && portal.contains(referenceElement)) {
               portal.removeChild(referenceElement);
               referenceElement = null;
+              // Remove class "required" caso exista
+              if (currentTarget.classList.contains("required")) {
+                currentTarget.classList.remove("required");
+              }
             }
           },
           { once: true }
