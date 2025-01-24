@@ -3,6 +3,9 @@ export function datePickerModal() {
   modal.classList.add("date-picker");
   modal.id = "datePickerModal";
 
+  const anim = document.createElement("div");
+  anim.classList.add("anim-container");
+
   // HEADER
   const header = document.createElement("header");
 
@@ -24,7 +27,8 @@ export function datePickerModal() {
   dateContent.append(weeksContainer, daysContainer);
 
   // MODAL ASSEMBLY
-  modal.append(header, dateContent);
+  anim.append(header, dateContent);
+  modal.appendChild(anim);
 
   return modal;
 }

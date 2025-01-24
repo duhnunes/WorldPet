@@ -2,14 +2,43 @@
   position: absolute;
 
   width: 190px;
-  padding: 0.5rem;
+  padding: 0;
 
   background-color: var(--bg-tertiary);
   border: 1px solid var(--border-primary);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0 0 0 / 0.1);
 
+  max-height: 0%;
+  opacity: 1;
   z-index: 20;
+  overflow: hidden;
+  animation: openDatePicker 0.25s linear both;
+  transition: 0.25s;
+}
+
+@keyframes openDatePicker {
+  to {
+    transform: translateY(0px);
+    max-height: 50%;
+  }
+}
+.closeDatePicker {
+  animation: closeDatePicker 0.25s linear both;
+}
+@keyframes closeDatePicker {
+  from {
+    transform: translateY(0px);
+    max-height: 100%;
+  }
+  to {
+    max-height: 0%;
+  }
+}
+.anim-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
 
   & > header {
     display: flex;

@@ -96,10 +96,17 @@ function handleDatePickerClick(e) {
     ) {
       // Verifica se o elemento ainda está no portal antes de removê-lo
       if (portal.contains(referenceElement)) {
-        portal.removeChild(referenceElement);
-        referenceElement = null;
-        document.removeEventListener("click", clickOutsideHandler);
-        lastClickedElement = null;
+        referenceElement.classList.add("closeDatePicker");
+        referenceElement.addEventListener(
+          "animationend",
+          () => {
+            portal.removeChild(referenceElement);
+            referenceElement = null;
+            document.removeEventListener("click", clickOutsideHandler);
+            lastClickedElement = null;
+          },
+          { once: true }
+        );
       }
     }
   };
@@ -108,14 +115,12 @@ function handleDatePickerClick(e) {
 
   // Posiciona o datePickerModal
   if (currentTarget.id === "selectDateModal") {
+    const insideDiv = referenceElement.querySelector(".anim-container");
     positionModal(currentTarget, referenceElement, "above");
-    referenceElement.style.display = "flex";
-    referenceElement.style.flexDirection = "column-reverse";
+    insideDiv.style.flexDirection = "column-reverse";
     datepickerHeader.classList.add("above");
   } else {
     positionModal(currentTarget, referenceElement);
-    referenceElement.style.display = "flex";
-    referenceElement.style.flexDirection = "column";
   }
 
   // Passa a função de seleção de data como parâmetro
