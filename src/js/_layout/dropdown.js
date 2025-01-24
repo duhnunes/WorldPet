@@ -5,6 +5,9 @@ export function dropdown(availableHour) {
   dropdown.classList.add("dropdown");
   dropdown.id = "dropdown";
 
+  const insideDiv = document.createElement("div");
+  insideDiv.classList.add("content-container");
+
   const ul = document.createElement("ul");
   ul.id = "hours";
   openingHours.forEach(({ hour, availableHour }) => {
@@ -16,7 +19,8 @@ export function dropdown(availableHour) {
     ul.append(li);
   });
 
-  dropdown.append(ul);
+  insideDiv.append(ul);
+  dropdown.appendChild(insideDiv);
 
   return dropdown;
 }

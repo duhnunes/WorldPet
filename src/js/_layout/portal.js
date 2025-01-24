@@ -144,6 +144,11 @@ async function handleDropdownClick(e) {
   referenceElement = dropdown();
   portal.appendChild(referenceElement);
 
+  // Adiciona a animação de abrir
+  referenceElement.classList.add(
+    currentTarget.classList.contains("above") ? "above" : "below"
+  );
+
   // Obtém o container para os horários disponíveis
   const hoursContainer = referenceElement.querySelector("#hours");
 
@@ -181,16 +186,27 @@ async function handleDropdownClick(e) {
     item.addEventListener("click", () => {
       document.removeEventListener("click", clickOutsideDropdownHandler);
       if (portal.contains(referenceElement)) {
-        portal.removeChild(referenceElement);
+        referenceElement.classList.add("closeDropdown");
+        referenceElement.addEventListener(
+          "animationend",
+          () => {
+            portal.removeChild(referenceElement);
+            referenceElement = null;
+          },
+          { once: true }
+        );
       }
-      referenceElement = null;
       lastClickedElement = null;
       hourModal.textContent = item.textContent;
       hourModal.value = item.textContent;
     });
   });
 
-  positionModal(currentTarget, referenceElement, "below");
+  positionModal(
+    currentTarget,
+    referenceElement,
+    currentTarget.classList.contains("above") ? "above" : "below"
+  );
 }
 
 openDatePickerButton.addEventListener("click", handleDatePickerClick);
