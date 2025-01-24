@@ -219,7 +219,11 @@ export function closeOpenModals(modalId = null) {
   if (modalId) {
     const modalToClose = document.getElementById(modalId);
     if (modalToClose && portal.contains(modalToClose)) {
-      portal.removeChild(modalToClose);
+      const insideDiv = modalToClose.querySelector(".modal-container");
+      insideDiv.classList.add("closeModal");
+      insideDiv.addEventListener("animationend", () => {
+        portal.removeChild(modalToClose);
+      });
     }
   } else if (referenceElement && portal.contains(referenceElement)) {
     portal.removeChild(referenceElement);
