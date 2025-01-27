@@ -3,3 +3,19 @@ footer {
   bottom: 1.875rem;
   right: 1.875rem;
 }
+
+@media (max-width: 390px) {
+  footer {
+    position: relative;
+    bottom: 0;
+    right: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 1.125rem 1.25rem;
+
+    background-color: var(--bg-tertiary);
+  }
+}

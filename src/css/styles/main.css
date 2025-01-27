@@ -17,7 +17,6 @@ main {
     width: 100%;
   }
 }
-
 .hero {
   & h1 {
     font: var(--title);
@@ -26,6 +25,18 @@ main {
   & p {
     font: var(--p-md);
     color: var(--content-secondary);
+  }
+}
+@media (max-width: 390px) {
+  main {
+    padding-inline: 1.25rem;
+    padding-bottom: 0;
+    padding-top: 3.5625rem;
+
+    & > header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 }
 
@@ -69,7 +80,6 @@ main {
   flex-direction: column;
   gap: 0.75rem;
 }
-
 .period-box {
   background-color: var(--bg-tertiary);
   border-radius: 10px;
@@ -124,27 +134,45 @@ main {
 
   padding-inline: 0.75rem;
 
-  & .hour {
-    font: var(--label-md);
-  }
+  & .client-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    flex: 1;
 
-  & .client-day,
-  & .type {
-    flex: 1 0 0;
-  }
+    & .hour {
+      font: var(--label-md);
+    }
 
-  & .client-day {
-    font: var(--p-sm);
-    color: var(--content-secondary);
+    & .client-pet,
+    & .type {
+      flex: 1 0 0;
+    }
 
-    & .day {
-      font: var(--label-sm);
-      color: var(--content-primary);
+    & .client-pet {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+
+      font: var(--p-sm);
+      color: var(--content-secondary);
+
+      & .pet {
+        font: var(--label-sm);
+        color: var(--content-primary);
+      }
+    }
+
+    & .type {
+      font: var(--p-sm);
+      color: var(--content-secondary);
     }
   }
-
-  & .type {
-    font: var(--p-sm);
-    color: var(--content-secondary);
+}
+@media (max-width: 390px) {
+  .client-content {
+    flex-direction: column;
   }
 }

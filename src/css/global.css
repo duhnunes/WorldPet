@@ -59,8 +59,15 @@
 }
 
 body {
-  min-width: 390px;
+  /* min-width: 390px; */
   min-height: 100vh;
+}
+@media (max-width: 390px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
 
 input,

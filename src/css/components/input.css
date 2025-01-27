@@ -33,3 +33,8 @@ textarea {
     border-color: var(--border-brand);
   }
 }
+@media (max-width: 390px) {
+  textarea {
+    height: auto;
+  }
+}
