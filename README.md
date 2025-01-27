@@ -72,8 +72,8 @@ O objetivo do desafio é construir uma página para os clientes agendarem um hor
 ### 390p (Samsung Galaxy S20)
 
 <p align="center">
-  <img src="./.github/imgs/demo390.gif" alt="demo 390 gif" />
-  <img src="./.github/imgs/demo390.jpeg" alt="demo 390 screenshot" />
+  <img src="./.github/imgs/demo360.gif" alt="demo 360 gif" />
+  <img src="./.github/imgs/demo360.jpeg" alt="demo 360 screenshot" />
 </p>
 
 ## 💻 Technology
